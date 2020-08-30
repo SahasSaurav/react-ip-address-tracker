@@ -25,7 +25,7 @@ const SearchBar = ({searchQuery}) => {
          focus:outline-none px-4 py-2 text-lg"
          onChange={e=>setText(e.target.value.toLowerCase())}
       />
-      <button className="flex justify-center items-center w-16 h-12 bg-black transition-colors duration-200 ease-linear hover:bg-dark-gray  ">
+      <button className="flex justify-center items-center w-16 h-12 bg-black transition-colors duration-200 ease-linear hover:bg-dark-gray " aria-label="search">
         <svg
           className=" text-white fill-current h-8 w-8"
           viewBox="0 0 20 20"

@@ -9,7 +9,7 @@ const StatsItem=({label,value})=>{
       <p className="text-light-gray mb-2 text-lg font-medium ">
         {label}
       </p>
-      <p className="text-dark-gray text-2xl font-medium" style={{
+      <p className="text-dark-gray text-2xl font-medium break-words" style={{
         maxWidth:"150px",
         lineHeight:"1.2"
       }}>

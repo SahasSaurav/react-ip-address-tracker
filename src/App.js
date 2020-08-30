@@ -12,9 +12,9 @@ export const icon=new Icon({
 })
 
 function App() {
-  const [ipData, setIPData] = useState({});
+  const [ipData, setIPData] = useState({ip:'',isp:''});
   const [term, setTerm] = useState("");
-  const [location, setLocation] = useState({ lat: 0, lon: 0 });
+  const [locationDetail, setLocationDetail] = useState({city:'',country:'',region:'',lat:'',lon:'',timeone:'',pin:''});
 
   useEffect(() => {
     fetchIP();
@@ -22,60 +22,35 @@ function App() {
 
   const fetchIP = async () => {
     try {
-      let url;
-      url = `http://ip-api.com/json/${term}?fields=status,message,continent,continentCode,country,countryCode,region,regionName,city,district,zip,lat,lon,timezone,offset,currency,isp,org,as,asname,reverse,mobile,proxy,hosting,query`;
+      const url=`https://geo.ipify.org/api/v1?apiKey=${process.env.REACT_APP_IPIFY_API_KEY}&ipAddress=${term}`
       const res = await fetch(url);
-      const {
-        query: ip,
-        city,
-        country,
-        countryCode,
-        zip,
-        lat,
-        lon,
-        offset: utcTimezone,
-        isp,
-      } = await res.json();
-      setIPData({
-        ip,
-        city,
-        country,
-        countryCode,
-        zip,
-        lat,
-        lon,
-        timezone: (parseFloat(utcTimezone) / 3600).toFixed(2),
-        isp,
-      });
-      setLocation({
-        lat,
-        lon,
-      });
+    //  const data= await res.json();
+     const {ip,isp,location:{city,region,country,lat,lng:lon,postalCode:zip,timezone}}=await res.json();
+      setIPData({ip,isp});
+      setLocationDetail({city,country,region,lat,lon,zip,timezone});
     } catch (err) {
       console.log(err);
     }
   };
-
+    
   return (
     <div className=" h-screen overflow-hidden ">
       <Header searchQuery={(text)=>setTerm(text)} />
       <div className="container flex justify-center items-center mx-auto">
-        <Stats data={ipData} />
+        <Stats data={ipData} location={locationDetail} />
       </div>
-      <MapContainer location={location}>
+      <MapContainer >
         <Map
-          center={[location.lat, location.lon]}
-          zoom={13}
-          style={{
-            height: "100%",
-          }}
+          center={[locationDetail.lat, locationDetail.lon]}
+          zoom={12}
+          className="h-full"
         >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
           <Marker
-            position={[location.lat, location.lon]}
+            position={[locationDetail.lat, locationDetail.lon]}
             icon={icon}
           />
         </Map>
