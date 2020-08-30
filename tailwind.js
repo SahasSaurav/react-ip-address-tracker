@@ -10,6 +10,7 @@ module.exports = {
       md: '768px',
       lg: '1024px',
       xl: '1280px',
+      xll:'1440px',
     },
     colors: {
       transparent: 'transparent',
@@ -17,7 +18,8 @@ module.exports = {
 
       black: '#000',
       white: '#fff',
-
+      'dark-gray':'hsl(0, 0%, 17%)',
+      'light-gray':'hsl(0, 0%, 59%)',
       gray: {
         100: '#f7fafc',
         200: '#edf2f7',

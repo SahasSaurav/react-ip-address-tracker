@@ -3,3 +3,12 @@
 @import "tailwindcss/components";
 
 @import "tailwindcss/utilities";
+
+li:first-of-type{
+  padding-left:0;
+  border-left:none;
+}
+*{
+  box-sizing: border-box;
+  /* outline: 1px solid red; */
+}
