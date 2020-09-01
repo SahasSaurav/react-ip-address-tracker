@@ -4,7 +4,7 @@ const MapContainer = (props) => {
   return (
     <div
       id="mymap"
-      className=""
+      className=" bg-gray-300"
       style={{
         height: "70%",
         transform: "translateY(-160px)",

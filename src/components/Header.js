@@ -2,7 +2,7 @@ import React from "react";
 import SearchBar from "./SearchBar";
 import pattern from '../assets/images/pattern-bg.png';
 
-const Header = ({searchQuery}) => {
+const Header = ({searchQuery,loader}) => {
   return (
     <header style={{
       backgroundImage:`url(${pattern})`,
@@ -16,7 +16,7 @@ const Header = ({searchQuery}) => {
         <h1 className="text-center text-4xl font-bold capitalize text-gray-100 mb-8">
           IP Address Tracker
         </h1>
-        <SearchBar searchQuery={searchQuery} />
+        <SearchBar searchQuery={searchQuery} loader={loader}/>
       </div>
     </header>
   );

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-const SearchBar = ({searchQuery}) => {
-  const [text,setText]=useState('')
+const SearchBar = ({searchQuery,loader}) => {
+  const [text,setText]=useState('');
 
   return (
     <form
@@ -12,7 +12,8 @@ const SearchBar = ({searchQuery}) => {
       }}
       onSubmit={(e) => {
         e.preventDefault();
-        searchQuery(text)
+        searchQuery(text);
+        loader(true);
       }}
     >
       <input

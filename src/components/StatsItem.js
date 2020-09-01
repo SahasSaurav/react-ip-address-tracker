@@ -10,7 +10,7 @@ const StatsItem=({label,value})=>{
         {label}
       </p>
       <p className="text-dark-gray text-2xl font-medium break-words" style={{
-        maxWidth:"150px",
+        maxWidth:"200px",
         lineHeight:"1.2"
       }}>
         {value}
